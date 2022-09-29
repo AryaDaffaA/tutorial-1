@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h5>Nama: </h5>
-<p>{{nama}}</p>
+<div class="topnav">
+    <a href="Nama">Arya Daffa</a>
+    <a href="{% url 'wishlist:logout' %}">Logout</a>
+  </div>
 
-<table>
+<h5>My Name is {{nama}}</h5>
+
+<table class="center">
     <tr>
     <th>Nama Barang</th>
     <th>Harga Barang</th>
@@ -13,13 +17,13 @@
     {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
     {% for barang in list_barang %}
     <tr>
-        <th>{{barang.nama_barang}}</th>
-        <th>{{barang.harga_barang}}</th>
-        <th>{{barang.deskripsi}}</th>
+        <td class="main">{{barang.nama_barang}}</td>
+        <td class="main">{{barang.harga_barang}}</td>
+        <td class="main">{{barang.deskripsi}}</td>
     </tr>
 {% endfor %}
 </table>
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+<h4>Sesi terakhir login: {{ last_login }}</h4>
+
 
 {% endblock content %}
