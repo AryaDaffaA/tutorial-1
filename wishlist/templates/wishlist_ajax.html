@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="topnav">
+    <a href="Nama">Arya Daffa</a>
+    <a href="{% url 'wishlist:logout' %}">Logout</a>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+      $.get(window.location.href.replace("ajax/", "")+ "json/", function(data) {
+      });
+    });
+  </script>
+  <!-- <script>
+    function refresh(){
+        $.ajax({
+            type: "GET",
+            url: '/wishlist/json/',
+            dataType: 'json',
+            success: function(data) {
+                datanya = data
+            }
+        })
+        return datanya;
+    }
+    function refresh2(){
+        var datanya = refresh();
+        var itemHtml= "<table> <tr> <th>Nama Barang</th> <th>Harga Barang</th> <th>Deskripsi</th> </tr>";
+        for(var i = 0; i<datanya;i++){
+            var item = datanya[i].fields;
+            itemHtml += '<tr> <th>' + item.nama_barang + '</th> <th>' + item.harga_barang + '</th> <th>' + item.deskripsi + '</th> </tr>';
+        }
+        itemHtml += "</table>";
+    }
+  </script> -->
+
+<h5>My Name is {{nama}}</h5>
+
+<table class="center">
+    <tr>
+    <th>Nama Barang</th>
+    <th>Harga Barang</th>
+    <th>Deskripsi</th>
+    </tr>
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    {% for barang in list_barang %}
+    <tr>
+        <td class="main">{{barang.nama_barang}}</td>
+        <td class="main">{{barang.harga_barang}}</td>
+        <td class="main">{{barang.deskripsi}}</td>
+    </tr>
+{% endfor %}
+</table>
+<h4>Sesi terakhir login: {{ last_login }}</h4>
+
+
+{% endblock content %}
